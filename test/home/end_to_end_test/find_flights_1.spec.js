@@ -6,6 +6,9 @@ test.beforeEach(async({page}) => {
     const referenceTitle = process.env.BLAZEDEMO_HOME_TITLE
     await searchFightInformation.gotoWebsite()
     await expect(page).toHaveTitle(referenceTitle)
+    await page.on('pageerror', (error) => {
+        console.error('Page error: ', error)
+    })
 })
 test("Search flight information from Paris to Buenos Aires to get a listing of available airlines", async({page}) => {
     const searchFlightInformation = new blazedemo_home(page);

@@ -6,8 +6,8 @@ test.beforeEach(async({page}) => {
     const referenceTitle = process.env.BLAZEDEMO_HOME_TITLE
     await searchFlightInformation.gotoWebsite()
     await expect(page).toHaveTitle(referenceTitle)
-    await page.on('pageerror', (error) => {
-            console.error('Page error: ', error)
+    await page.on('pageerror', (exception) => {
+        throw new Error('Uncaught exception: ${exception.message}')
     })
 })
 test("Search flight information for Philadelphia to Buenos Aires", async({page}) => {

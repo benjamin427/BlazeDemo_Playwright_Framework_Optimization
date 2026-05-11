@@ -6,6 +6,9 @@ test.beforeEach(async({page}) => {
     const verifyFlightServices = new blazedemo_home(page)
     const referenceTitle = process.env.BLAZEDEMO_HOME_TITLE
     await verifyFlightServices.gotoWebsite()
+    await page.on('pageerror', (error) => {
+        console.error('Page error: ', error)
+    })
     await expect(page).toHaveTitle(referenceTitle) 
 })
 test("Verify the total cost of a flight from Paris to Buenos Aires from Virgin America airlines", async({page}) => {

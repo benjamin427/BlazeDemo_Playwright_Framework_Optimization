@@ -1,7 +1,7 @@
 const {expect, test} = require('@playwright/test')
 import {blazedemo_home} from '../page_objects/home'
 import {blazedemo_reserve} from '../page_objects/reserve_flights_departure_paris'
-import logger from '../../../my-report.js'
+
 
 test.beforeEach(async({page}) => {
     const verifyFlightServices = new blazedemo_home(page)

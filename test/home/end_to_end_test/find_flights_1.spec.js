@@ -1,5 +1,5 @@
 const {expect, test} = require('@playwright/test')
-import logger from '../../../my-report.js'
+
 import {blazedemo_home} from '../page_objects/home.js'
 
 test.beforeEach(async({page}) => {

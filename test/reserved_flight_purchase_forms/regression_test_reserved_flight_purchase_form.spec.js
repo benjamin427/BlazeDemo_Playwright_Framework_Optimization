@@ -8,6 +8,7 @@ test.beforeEach(async({page}) => {
     const referenceEndpoint = process.env.BLAZEDEMO_PURCHASE_UNITED_AIRLINES_ENDPOINT
     await expect(page).toHaveTitle(referenceTitle)
     await expect(page).toHaveURL(referenceEndpoint)
+   
 })
 test("Entering the expected text format for all text fields in the United Airlines flight purchase form using Visa card", async({page}) => {
     const purchaseReserveFlight = new blazedemo_reserve_flight_purchase(page)

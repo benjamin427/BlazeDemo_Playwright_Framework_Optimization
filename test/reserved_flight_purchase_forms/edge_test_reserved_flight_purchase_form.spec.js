@@ -1,6 +1,7 @@
 const {expect, test} = require('@playwright/test')
 import { blazedemo_reserve_flight_purchase } from './page_objects/reserve_flight_form'
 
+
 test("Enter special characters on all text fields of the purchase form for Virgin America to be submitted buy using American Express. Should return an error prompt message.", async({page}) => {
     const enterPuchaseForm = new blazedemo_reserve_flight_purchase(page)
     const referenceTitle = process.env.BLAZEDEMO_PURCHASE_VIRGIN_AMERICA_TITLE

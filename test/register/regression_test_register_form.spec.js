@@ -13,4 +13,5 @@ test("Enter all text fields with expected text formats", async({page}) => {
     await expect(page).toHaveTitle(reference_title)
     await expect(page).toHaveURL(reference_url)
     await register.test_register_form(reference_name, reference_company, reference_emailAddress, reference_password, reference_password)
+   
 })

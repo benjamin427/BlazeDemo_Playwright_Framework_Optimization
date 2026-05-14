@@ -13,6 +13,7 @@ test("Submit a blank register form. Should display a error prompt message", asyn
     await expect(page).toHaveTitle(reference_title)
     await expect(page).toHaveURL(reference_url)
     await register.negative_test_register_blank()
+    
 })
 test("Submit a form with a blank name text field. Should display an error prompt message", async({page}) => {
     const register = new blazedemo_register(page)

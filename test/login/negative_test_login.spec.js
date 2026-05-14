@@ -21,6 +21,7 @@ test("Enter the password in text field and leave the email blank", async({page})
     await expect(page).toHaveTitle(reference_title)
     await expect(page).toHaveURL(reference_endpoint)
     await login.negative_test_blank_email_login(reference_password)
+
 })
 test("Leave email and password text fields blank. Should display a prompt error message", async({page}) => {
     const login = new blazedemo_login(page)
@@ -30,4 +31,5 @@ test("Leave email and password text fields blank. Should display a prompt error 
     await expect(page).toHaveTitle(reference_title)
     await expect(page).toHaveURL(reference_endpoint)
     await login.negative_test_blank_login()
+
 })

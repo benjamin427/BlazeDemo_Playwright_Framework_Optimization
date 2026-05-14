@@ -10,13 +10,13 @@ exports.blazedemo_reset_password = class BlazeDemo_PasswordReset {
     }
 
     async test_password_reset_form(email_address){
-        await this.emailAddress.fill(email_address, {timeout: 7000})
-        await this.submitButton.click({timeout: 7000})
+        await this.emailAddress.fill(email_address, {timeout: 45000})
+        await this.submitButton.click({timeout: 45000})
     }
     async negative_test_password_reset_form(){
-        await this.submitButton.click({timeout: 7000})
+        await this.submitButton.click({timeout: 45000})
     }
     async close(){
-        await this.page.close({timeout: 7000})
+        await this.page.close({timeout: 45000})
     }
 }

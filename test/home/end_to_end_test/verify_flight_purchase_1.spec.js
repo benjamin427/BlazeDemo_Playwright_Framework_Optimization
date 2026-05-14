@@ -6,9 +6,7 @@ import logger from '../../../my-report.js'
 test.beforeEach(async({page}) => {
     const verifyFlightServices = new blazedemo_home(page)
     const referenceTitle = process.env.BLAZEDEMO_HOME_TITLE
-  
     await verifyFlightServices.gotoWebsite()
- 
     await expect(page).toHaveTitle(referenceTitle)
     const verifyTitle = await expect(page).toHaveTitle(referenceTitle)
     

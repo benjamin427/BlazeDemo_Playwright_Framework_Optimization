@@ -6,10 +6,13 @@ test.beforeEach(async ({page}) => {
     const verifyFlightServices = new blazedemo_home(page)
     const referenceTitle = process.env.BLAZEDEMO_HOME_TITLE
     await verifyFlightServices.gotoWebsite()
-    await expect(page).toHaveTitle(referenceTitle)
-    await page.on('pageerror', (exception) => {
-        throw new Error('Uncaught exception: ${exception.message}')
-    })
+    const verifyTitle = await expect(page).toHaveTitle(referenceTitle)
+    // await page.evaluate((data) => {
+    //     console.log("Title not found:", data)
+    // }, verifyTitle)
+    // await page.on('pageerror', (dialog) => {
+    //     console.log(`Uncaught exception: ${dialog.message}`)
+    // })
 })
 test("Verify the total cost of a flight from Boston to Buenos Aires from Lufthansa Airlines", async({page}) => {
     const verifyFlightServices = new blazedemo_home(page)

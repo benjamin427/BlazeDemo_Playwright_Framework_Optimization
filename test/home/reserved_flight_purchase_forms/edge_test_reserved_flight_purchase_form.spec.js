@@ -15,6 +15,7 @@ test("Enter special characters on all text fields of the purchase form for Virgi
     await enterPuchaseForm.select_card_american_express()
     await enterPuchaseForm.checkbox()
     await enterPuchaseForm.submitButton()
+
 })
 test("Enter special characters on all text fields of the purchase form for Virgin America to be submitted buy using Visa. Should return an error prompt message.", async({page}) => {
     const enterPuchaseForm = new blazedemo_reserve_flight_purchase(page)

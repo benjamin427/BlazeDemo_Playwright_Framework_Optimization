@@ -34,7 +34,7 @@ jobs:
     
   merge-reports:
     if: ${{ !cancelled() }}
-    needs: [playwright-tests]
+    needs: [playwright test]
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4

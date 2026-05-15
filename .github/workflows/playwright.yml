@@ -24,21 +24,32 @@ jobs:
       run: npx playwright install --with-deps
     - name: Run Playwright tests
       run: npx playwright test --shard=${{matrix.shardIndex}}/${{matrix.shardTotal}}
-    - name: Generate Playwright report to merge results
-      run: npx playwright merge-reports --reporter html ./all-blob-reports
-    - name: Upload Playwright report to GitHub Actions artifacts
+    - name: Upload blob report to GitHub Actions artifacts
       if: ${{!cancelled()}}
       uses: actions/upload-artifact@v4
       with:
-        name: playwright-report-${{matrix.shardIndex}}
+        name: all-blob-reports-${{matrix.shardIndex}}
+        path: blob-report/
+        retention-days: 30
+    
+  merge-reports:
+    if: ${{ !cancelled() }}
+    needs: [playwright-tests]
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - uses: actions/setup-node@v4
+    - name: Download all reports from Github Actions artifacts
+      uses: actions/download-artifact@v4
+      with:
+        path: all-blob-reports
+        pattern: all-blob-reports-*
+        merge-multiple: true
+    - name: Merge into HTML Report
+      run: npx playwright merge-reports --reporter HTML ./all-blob-reports
+    - name: Upload final HTML report 
+      uses: actions/upload-artifacts@v4
+      with:
+        name: plywright-report
         path: playwright-report/
         retention-days: 30
-    # - uses: actions/upload-artifact@v4
-    #   with:
-    #      name: playwright-report-${{strategy.matrix}}
-    #      path: playwright-report/
-    #   if: ${{ !cancelled() }}
-    #   with:
-    #     name: playwright-report
-    #     path: playwright-report/
-    #     retention-days: 30

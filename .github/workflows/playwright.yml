@@ -24,12 +24,14 @@ jobs:
       run: npx playwright install --with-deps
     - name: Run Playwright tests
       run: npx playwright test --shard=${{matrix.shardIndex}}/${{matrix.shardTotal}}
+    - name: Generate Playwright report to merge results
+      run: npx playwright merge-reports --reporter html ./all-blob-reports
     - name: Upload Playwright report to GitHub Actions artifacts
       if: ${{!cancelled()}}
       uses: actions/upload-artifact@v4
       with:
         name: playwright-report-${{matrix.shardIndex}}
-        path: playwright-report
+        path: playwright-report/
         retention-days: 30
     # - uses: actions/upload-artifact@v4
     #   with:

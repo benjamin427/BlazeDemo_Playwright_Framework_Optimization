@@ -6,16 +6,13 @@ import {blazedemo_reserve} from '../page_objects/reserve_flights_departure_paris
 test.beforeEach(async({page}) => {
     const verifyFlightServices = new blazedemo_home(page)
     const referenceTitle = process.env.BLAZEDEMO_HOME_TITLE
+    // Listen for console messages and log them to the terminal
+    await page.on('console', msg => {
+        console.log(`Browser log: [${msg.type()}] "${msg.text()}"`)
+    })
     await verifyFlightServices.gotoWebsite()
     await expect(page).toHaveTitle(referenceTitle)
     const verifyTitle = await expect(page).toHaveTitle(referenceTitle)
-    
-    // await page.evaluate((data) => {
-    //     console.log("Title not found:", data)
-    // }, verifyTitle)
-    // await page.on('pageerror', (dialog) => {
-    //     console.log(`Uncaught exception: ${dialog.message}`)
-    // })
 })
 test("Verify the total cost of a flight from Paris to Buenos Aires from Virgin America airlines", async({page}) => {
     const verifyFlightServices = new blazedemo_home(page)

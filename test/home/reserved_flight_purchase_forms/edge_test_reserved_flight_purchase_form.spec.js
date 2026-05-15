@@ -1,12 +1,21 @@
 const {expect, test} = require('@playwright/test')
 import { blazedemo_reserve_flight_purchase } from './page_objects/reserve_flight_form'
 
+test.beforeEach( async({page}) => {
+    const enterPurchaseForm = new blazedemo_reserve_flight_purchase(page)
+    // Listen for console messages and log them to the terminal
+    await page.on('console', msg => {
+        console.log(`Browser log: [${msg.type()}] "${msg.text()}"`)
+    })
+    await enterPurchaseForm.gotoWebsiteSource()
+})
+
+
 test("Enter special characters on all text fields of the purchase form for Virgin America to be submitted buy using American Express. Should return an error prompt message.", async({page}) => {
     const enterPuchaseForm = new blazedemo_reserve_flight_purchase(page)
     const referenceTitle = process.env.BLAZEDEMO_PURCHASE_VIRGIN_AMERICA_TITLE
     const referenceEndpoint = process.env.BLAZEDEMO_PURCHASE_VIRGIN_AMERICA_ENDPOINT
     const referenceSpecialCharacters = process.env.BLAZEDEMO_PURCHASE_VIRGIN_AMERICA_SPECIAL_CHARACTERS
-    await enterPuchaseForm.gotoWebsiteSource()
     await expect(page).toHaveTitle(referenceTitle)
     await expect(page).toHaveURL(referenceEndpoint)
     await enterPuchaseForm.test_reserved_flight_form(referenceSpecialCharacters, referenceSpecialCharacters,
@@ -22,7 +31,6 @@ test("Enter special characters on all text fields of the purchase form for Virgi
     const referenceTitle = process.env.BLAZEDEMO_PURCHASE_VIRGIN_AMERICA_TITLE
     const referenceEndpoint = process.env.BLAZEDEMO_PURCHASE_VIRGIN_AMERICA_ENDPOINT
     const referenceSpecialCharacters = process.env.BLAZEDEMO_PURCHASE_VIRGIN_AMERICA_SPECIAL_CHARACTERS
-    await enterPuchaseForm.gotoWebsiteSource()
     await expect(page).toHaveTitle(referenceTitle)
     await expect(page).toHaveURL(referenceEndpoint)
     await enterPuchaseForm.test_reserved_flight_form(referenceSpecialCharacters, referenceSpecialCharacters,
@@ -37,7 +45,6 @@ test("Enter special characters on all text fields of the purchase form for Virgi
     const referenceTitle = process.env.BLAZEDEMO_PURCHASE_VIRGIN_AMERICA_TITLE
     const referenceEndpoint = process.env.BLAZEDEMO_PURCHASE_VIRGIN_AMERICA_ENDPOINT
     const referenceSpecialCharacters = process.env.BLAZEDEMO_PURCHASE_VIRGIN_AMERICA_SPECIAL_CHARACTERS
-    await enterPuchaseForm.gotoWebsiteSource()
     await expect(page).toHaveTitle(referenceTitle)
     await expect(page).toHaveURL(referenceEndpoint)
     await enterPuchaseForm.test_reserved_flight_form(referenceSpecialCharacters, referenceSpecialCharacters,
@@ -52,7 +59,6 @@ test("Enter another string of special characters on all text fields of the purch
     const referenceTitle = process.env.BLAZEDEMO_PURCHASE_VIRGIN_AMERICA_TITLE
     const referenceEndpoint = process.env.BLAZEDEMO_PURCHASE_VIRGIN_AMERICA_ENDPOINT
     const referenceSpecialCharactersVersion2 = process.env.BLAZEDEMO_PURCHASE_VIRGIN_AMERICA_SPECIAL_CHARACTERS_VERSION_2
-    await enterPuchaseForm.gotoWebsiteSource()
     await expect(page).toHaveTitle(referenceTitle)
     await expect(page).toHaveURL(referenceEndpoint)
     await enterPuchaseForm.test_reserved_flight_form(referenceSpecialCharactersVersion2, referenceSpecialCharactersVersion2,
@@ -67,7 +73,6 @@ test("Enter another string of special characters on all text fields of the purch
     const referenceTitle = process.env.BLAZEDEMO_PURCHASE_VIRGIN_AMERICA_TITLE
     const referenceEndpoint = process.env.BLAZEDEMO_PURCHASE_VIRGIN_AMERICA_ENDPOINT
     const referenceSpecialCharactersVersion2 = process.env.BLAZEDEMO_PURCHASE_VIRGIN_AMERICA_SPECIAL_CHARACTERS_VERSION_2
-    await enterPuchaseForm.gotoWebsiteSource()
     await expect(page).toHaveTitle(referenceTitle)
     await expect(page).toHaveURL(referenceEndpoint)
     await enterPuchaseForm.test_reserved_flight_form(referenceSpecialCharactersVersion2, referenceSpecialCharactersVersion2,
@@ -82,7 +87,6 @@ test("Enter another string of special characters on all text fields of the purch
     const referenceTitle = process.env.BLAZEDEMO_PURCHASE_VIRGIN_AMERICA_TITLE
     const referenceEndpoint = process.env.BLAZEDEMO_PURCHASE_VIRGIN_AMERICA_ENDPOINT
     const referenceSpecialCharactersVersion2 = process.env.BLAZEDEMO_PURCHASE_VIRGIN_AMERICA_SPECIAL_CHARACTERS_VERSION_2
-    await enterPuchaseForm.gotoWebsiteSource()
     await expect(page).toHaveTitle(referenceTitle)
     await expect(page).toHaveURL(referenceEndpoint)
     await enterPuchaseForm.test_reserved_flight_form(referenceSpecialCharactersVersion2, referenceSpecialCharactersVersion2,
@@ -97,7 +101,6 @@ test("Enter another string version of special characters on all text fields of t
     const referenceTitle = process.env.BLAZEDEMO_PURCHASE_VIRGIN_AMERICA_TITLE
     const referenceEndpoint = process.env.BLAZEDEMO_PURCHASE_VIRGIN_AMERICA_ENDPOINT
     const referenceSpecialCharactersVersion3 = process.env.BLAZEDEMO_PURCHASE_VIRGIN_AMERICA_SPECIAL_CHARACTERS_VERSION_3
-    await enterPuchaseForm.gotoWebsiteSource()
     await expect(page).toHaveTitle(referenceTitle)
     await expect(page).toHaveURL(referenceEndpoint)
     await enterPuchaseForm.test_reserved_flight_form(referenceSpecialCharactersVersion3, referenceSpecialCharactersVersion3,
@@ -112,7 +115,6 @@ test("Enter another string version of special characters on all text fields of t
     const referenceTitle = process.env.BLAZEDEMO_PURCHASE_VIRGIN_AMERICA_TITLE
     const referenceEndpoint = process.env.BLAZEDEMO_PURCHASE_VIRGIN_AMERICA_ENDPOINT
     const referenceSpecialCharactersVersion3 = process.env.BLAZEDEMO_PURCHASE_VIRGIN_AMERICA_SPECIAL_CHARACTERS_VERSION_3
-    await enterPuchaseForm.gotoWebsiteSource()
     await expect(page).toHaveTitle(referenceTitle)
     await expect(page).toHaveURL(referenceEndpoint)
     await enterPuchaseForm.test_reserved_flight_form(referenceSpecialCharactersVersion3, referenceSpecialCharactersVersion3,
@@ -127,7 +129,6 @@ test("Enter another string version of unique special characters on all text fiel
     const referenceTitle = process.env.BLAZEDEMO_PURCHASE_VIRGIN_AMERICA_TITLE
     const referenceEndpoint = process.env.BLAZEDEMO_PURCHASE_VIRGIN_AMERICA_ENDPOINT
     const referenceSpecialCharactersVersion3 = process.env.BLAZEDEMO_PURCHASE_VIRGIN_AMERICA_SPECIAL_CHARACTERS_VERSION_3
-    await enterPuchaseForm.gotoWebsiteSource()
     await expect(page).toHaveTitle(referenceTitle)
     await expect(page).toHaveURL(referenceEndpoint)
     await enterPuchaseForm.test_reserved_flight_form(referenceSpecialCharactersVersion3, referenceSpecialCharactersVersion3,
@@ -142,7 +143,6 @@ test("Enter another string of special unique characters on all text fields of th
     const referenceTitle = process.env.BLAZEDEMO_PURCHASE_VIRGIN_AMERICA_TITLE
     const referenceEndpoint = process.env.BLAZEDEMO_PURCHASE_VIRGIN_AMERICA_ENDPOINT
     const referenceSpecialCharactersVersion4 = process.env.BLAZEDEMO_PURCHASE_VIRGIN_AMERICA_SPECIAL_CHARACTERS_VERSION_4
-    await enterPuchaseForm.gotoWebsiteSource()
     await expect(page).toHaveTitle(referenceTitle)
     await expect(page).toHaveURL(referenceEndpoint)
     await enterPuchaseForm.test_reserved_flight_form(referenceSpecialCharactersVersion4, referenceSpecialCharactersVersion4,
@@ -157,7 +157,6 @@ test("Enter another string version of special characters on all text fields of t
     const referenceTitle = process.env.BLAZEDEMO_PURCHASE_VIRGIN_AMERICA_TITLE
     const referenceEndpoint = process.env.BLAZEDEMO_PURCHASE_VIRGIN_AMERICA_ENDPOINT
     const referenceSpecialCharactersVersion4 = process.env.BLAZEDEMO_PURCHASE_VIRGIN_AMERICA_SPECIAL_CHARACTERS_VERSION_4
-    await enterPuchaseForm.gotoWebsiteSource()
     await expect(page).toHaveTitle(referenceTitle)
     await expect(page).toHaveURL(referenceEndpoint)
     await enterPuchaseForm.test_reserved_flight_form(referenceSpecialCharactersVersion4, referenceSpecialCharactersVersion4,
@@ -172,7 +171,6 @@ test("Enter string version of unique special characters on all text fields of th
     const referenceTitle = process.env.BLAZEDEMO_PURCHASE_VIRGIN_AMERICA_TITLE
     const referenceEndpoint = process.env.BLAZEDEMO_PURCHASE_VIRGIN_AMERICA_ENDPOINT
     const referenceSpecialCharactersVersion4 = process.env.BLAZEDEMO_PURCHASE_VIRGIN_AMERICA_SPECIAL_CHARACTERS_VERSION_4
-    await enterPuchaseForm.gotoWebsiteSource()
     await expect(page).toHaveTitle(referenceTitle)
     await expect(page).toHaveURL(referenceEndpoint)
     await enterPuchaseForm.test_reserved_flight_form(referenceSpecialCharactersVersion4, referenceSpecialCharactersVersion4,
@@ -187,7 +185,6 @@ test("Enter another string of unique special characters on all text fields of th
     const referenceTitle = process.env.BLAZEDEMO_PURCHASE_VIRGIN_AMERICA_TITLE
     const referenceEndpoint = process.env.BLAZEDEMO_PURCHASE_VIRGIN_AMERICA_ENDPOINT
     const referenceSpecialCharactersVersion5 = process.env.BLAZEDEMO_PURCHASE_VIRGIN_AMERICA_SPECIAL_CHARACTERS_VERSION_5
-    await enterPuchaseForm.gotoWebsiteSource()
     await expect(page).toHaveTitle(referenceTitle)
     await expect(page).toHaveURL(referenceEndpoint)
     await enterPuchaseForm.test_reserved_flight_form(referenceSpecialCharactersVersion5, referenceSpecialCharactersVersion5,
@@ -202,7 +199,6 @@ test("Enter another string of special characters on all text fields of the purch
     const referenceTitle = process.env.BLAZEDEMO_PURCHASE_VIRGIN_AMERICA_TITLE
     const referenceEndpoint = process.env.BLAZEDEMO_PURCHASE_VIRGIN_AMERICA_ENDPOINT
     const referenceSpecialCharactersVersion5 = process.env.BLAZEDEMO_PURCHASE_VIRGIN_AMERICA_SPECIAL_CHARACTERS_VERSION_5
-    await enterPuchaseForm.gotoWebsiteSource()
     await expect(page).toHaveTitle(referenceTitle)
     await expect(page).toHaveURL(referenceEndpoint)
     await enterPuchaseForm.test_reserved_flight_form(referenceSpecialCharactersVersion5, referenceSpecialCharactersVersion5,
@@ -217,7 +213,6 @@ test("Enter a shorter string of unique special characters on all text fields of 
     const referenceTitle = process.env.BLAZEDEMO_PURCHASE_VIRGIN_AMERICA_TITLE
     const referenceEndpoint = process.env.BLAZEDEMO_PURCHASE_VIRGIN_AMERICA_ENDPOINT
     const referenceSpecialCharactersVersion5 = process.env.BLAZEDEMO_PURCHASE_VIRGIN_AMERICA_SPECIAL_CHARACTERS_VERSION_5
-    await enterPuchaseForm.gotoWebsiteSource()
     await expect(page).toHaveTitle(referenceTitle)
     await expect(page).toHaveURL(referenceEndpoint)
     await enterPuchaseForm.test_reserved_flight_form(referenceSpecialCharactersVersion5, referenceSpecialCharactersVersion5,

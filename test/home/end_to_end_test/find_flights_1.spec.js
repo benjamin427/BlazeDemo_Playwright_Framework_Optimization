@@ -5,11 +5,10 @@ import {blazedemo_home} from '../page_objects/home.js'
 test.beforeEach(async({page}) => {
     const searchFightInformation = new blazedemo_home(page)
     const referenceTitle = process.env.BLAZEDEMO_HOME_TITLE
-    // await searchFightInformation.gotoWebsite()
-    // await expect(page).toHaveTitle(referenceTitle)
-    // await page.on('pageerror', (dialog) => {
-    //     console.log(`Uncaught exception: ${dialog.message}`)
-    // })
+    // Listen for console messages and log them to the terminal
+    await page.on('console', msg => {
+        console.log(`Browser log: [${msg.type()}] "${msg.text()}"`)
+    })
     await searchFightInformation.gotoWebsite()
     await expect(page).toHaveTitle(referenceTitle)
   

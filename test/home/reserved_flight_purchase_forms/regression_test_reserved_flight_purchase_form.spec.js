@@ -3,6 +3,10 @@ import {blazedemo_reserve_flight_purchase} from './page_objects/reserve_flight_f
 
 test.beforeEach(async({page}) => {
     const purchaseReserveFlight = new blazedemo_reserve_flight_purchase(page)
+     // Listen for console messages and log them to the terminal
+    await page.on('console', msg => {
+        console.log(`Browser log [${msg.type()}] "${msg.text()}"`)
+    })
     await purchaseReserveFlight.gotoWebsiteSource()
     const referenceTitle = process.env.BLAZEDEMO_PURCHASE_UNITED_AIRLINES_TITLE
     const referenceEndpoint = process.env.BLAZEDEMO_PURCHASE_UNITED_AIRLINES_ENDPOINT

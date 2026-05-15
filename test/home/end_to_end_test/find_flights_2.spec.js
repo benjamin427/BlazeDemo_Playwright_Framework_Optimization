@@ -5,14 +5,12 @@ import {blazedemo_home} from '../page_objects/home'
 test.beforeEach(async({page}) => {
     const searchFlightInformation = new blazedemo_home(page)
     const referenceTitle = process.env.BLAZEDEMO_HOME_TITLE
+    // Listen for console messages and log them to the terminal
+    await page.on('console', msg => {
+        console.log(`Browser log: [${msg.type()}] "${msg.text()}"`)
+    })
     await searchFlightInformation.gotoWebsite()
     const verifyTitle = await expect(page).toHaveTitle(referenceTitle)    
-    // await page.evaluate((data) => {
-    //     console.log("Title not found:", data)
-    // }, verifyTitle)
-    // await page.on('pageerror', (dialog) => {
-    //     console.log(`Uncaught exception: ${dialog.message}`)
-    // })
 })
 test("Search flight information for Philadelphia to Buenos Aires", async({page}) => {
     const searchFlightInformation = new blazedemo_home(page)

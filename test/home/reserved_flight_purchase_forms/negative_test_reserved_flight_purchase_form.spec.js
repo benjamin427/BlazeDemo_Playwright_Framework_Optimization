@@ -5,6 +5,10 @@ test.beforeEach(async({page}) => {
     const negativeTestForm = new blazedemo_reserve_flight_purchase(page)
     const referenceTitle = process.env.BLAZEDEMO_PURCHASE_VIRGIN_AMERICA_TITLE
     const referenceEndpoint = process.env.BLAZEDEMO_PURCHASE_VIRGIN_AMERICA_ENDPOINT
+    // Listen for console messages and log them to the terminal
+    await page.on('console', msg => {
+        console.log(`Browser log: [${msg.type()}] "${msg.text()}"`)
+    })
     await negativeTestForm.gotoWebsiteSource()
     await expect(page).toHaveTitle(referenceTitle)
     await expect(page).toHaveURL(referenceEndpoint)

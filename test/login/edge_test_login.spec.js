@@ -2,6 +2,15 @@ import {expect, test} from '@playwright/test'
 import {blazedemo_login} from '../login/page_objects/login';
 
 
+test.beforeEach( async({page}) => {
+    const login = new blazedemo_login(page)
+    // Listen for console messages and log them to the terminal
+    await page.on('console', msg => {
+        console.log(`Browser log: [${msg.type()}] "${msg.text()}"`)
+    })
+    await login.visitWebsiteLogin()
+})
+
 test("Entering special characters for email text field with expected password input. Should display a prompt error message", async({page}) => {
     const login = new blazedemo_login(page)
 
@@ -11,7 +20,6 @@ test("Entering special characters for email text field with expected password in
     const reference_title = process.env.BLAZEDEMO_LOGIN_TITLE
     const reference_endpoint = process.env.BLAZEDEMO_LOGIN_ENDPOINT
 
-    await login.visitWebsiteLogin()
     await expect(page).toHaveTitle(reference_title)
     await expect(page).toHaveURL(reference_endpoint)
     await login.test_login(reference_special_chracters, reference_password)
@@ -24,7 +32,6 @@ test("Entering special characters for password text field with expected email in
     const reference_title = process.env.BLAZEDEMO_LOGIN_TITLE
     const reference_endpoint = process.env.BLAZEDEMO_LOGIN_ENDPOINT
 
-    await login.visitWebsiteLogin()
     await expect(page).toHaveTitle(reference_title)
     await expect(page).toHaveURL(reference_endpoint)
     await login.test_login(reference_emailAddress, reference_special_chracters)
